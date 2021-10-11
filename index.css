@@ -1,0 +1,112 @@
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pImg {
+    width: 60px;
+    height: 60px;
+    padding: 10%;
+}
+
+.greeting {
+    text-align: center;
+    height: 15%;
+    font-size: 30px;
+    color: white;
+    background-color: black;
+}
+
+#selectPlayer {
+    margin: auto;
+    width: 900px;
+    height: 100%;
+}
+
+.menu {
+    margin: auto;
+    width: 520px;
+    padding: 0;
+    border: 0;
+    height: 100%;
+}
+
+.Player {
+    float: left;
+    height: 100%;
+    background-color: pink;
+}
+
+.mainDiv {
+    height: 50%;
+}
+
+#Player_Stats {
+    width: 25%;
+    margin: 1%;
+    padding: 1%;
+    background: url("images/wooden.jpg");
+    color: white;
+}
+
+#Player_Champ {
+    width: 45%;
+    margin: 1% 0% 1%;
+    padding: 1%;
+}
+
+#Player_Items {
+    width: 20%;
+    margin: 1%;
+    padding: 1%;
+    background: url("images/wooden.jpg");
+    color: white;
+}
+
+.champSelector {
+    float: left;
+    width: 50%;
+    height: 85%;
+}
+
+.pointer {
+    background: red;
+    border-radius: 30% / 10%;
+    color: white;
+    font-size: 3vh;
+    padding: 1%;
+}
+
+.button {
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.button:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+.battleDiv {
+    height: 40%;
+    background: url("images/battleMap.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.GameStats {
+    background-color: aquamarine;
+    height: 60%;
+}
+
+.floatLeft {
+    float: left;
+    width: 50%;
+    text-align: center;
+}

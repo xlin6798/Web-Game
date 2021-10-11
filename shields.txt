@@ -1,0 +1,8 @@
+{"name": "Doran's Shield", "armor": "5","level": "Beginner", "cost": "0"}, 
+{"name": "Cloth Armor", "armor": "5","level": "Bronze", "cost": "100"}, 
+{"name": "Chain Vest", "armor": "10","level": "Silver", "cost": "200"}, 
+{"name": "Warden's Mail", "armor": "20","level": "Gold", "cost": "400"}, 
+{"name": "Thornmail", "armor": "35","level": "Platinum", "cost": "800"}, 
+{"name": "Forgefire Cape", "armor": "60","level": "Diamond", "cost": "1600"}, 
+{"name": "Randuin's Omen", "armor": "80","level": "Master", "cost": "3200"}, 
+{"name": "Dead Man's Plate", "armor": "120","level": "Challenger", "cost": "6400"},

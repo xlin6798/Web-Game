@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> League Frontier </title>
+
+    <link rel="stylesheet" href="index.css">
+    <script src="items.js"></script>
+    <script src="index.js"></script>
+
+</head>
+
+<body onload="load();">
+
+    <div id="selectPlayer">
+        <div class="greeting"> Summoner, please select your character! <br/> On the left, it is the mighty fighter Brandon and on the right, it is the fire mage Annie </div>
+        <img class="champSelector" onclick="selectChamp('Brandon', 22, 25, 400);" id="BrandonFighter" src="images/Brandon.jpg" />
+        <img class="champSelector" onclick="selectChamp('Annie', 30, 18, 250);" id="AnnieMage" src="images/Annie.jpg" />
+    </div>
+
+    <div class="menu" id="mainMenu">
+        <div class="pointer" id="gameTitile" style="background: url('images/wooden.jpg')!important; font-size: 8vh !important; margin: 0% 1% 1%; text-align: center;">
+            League Frontier
+        </div>
+
+        <div class="mainDiv">
+
+            <div class="Player" id="Player_Stats">
+                <span class="pointer"> Name: </span> <br/> <span id="Player_Name">  </span> <br/>
+                <span class="pointer"> Level: </span> <span id="Player_Level">  </span> <br/> <progress style="width:120px;" id="playerLevel"> </progress> <br/>
+                <span class="pointer"> Health: </span> <br/> <span id="Player_Health">  </span> <br/>
+                <span class="pointer"> Attack: </span> <br/> <span id="Player_Attack">  </span> <br/>
+                <span class="pointer"> Defense: </span> <br/> <span id="Player_Defense">  </span> <br/>
+                <span class="pointer"> Weapon Lv: </span> <br/> <span id="Player_WeaponLevel">  </span> <br/>
+                <span class="pointer"> Shield Lv: </span> <br/> <span id="Player_ShieldLevel">  </span> <br/>
+                <span class="pointer"> Gold: </span> <br/> <span id="Player_Gold">  </span> <br/>
+            </div>
+
+            <div class="Player" id="Player_Champ">
+            </div>
+
+            <div class="Player" id="Player_Items">
+                <span class="pointer"> Weapon: </span> <br/> <span id="Player_Weapon">  </span> <br/>
+                <img class="pImg" id="weaponImg" src="" /> <br/>
+                <span id="weaponGold"> </span>
+                <button class="button" onclick="levelUp('Weapon');"> Level Up </button> <br/> <br/>
+
+                <span class="pointer"> Shield: </span> <br/> <span id="Player_Shield">  </span> <br/>
+                <img class="pImg" id="shieldImg" src="" /> <br/>
+                <span id="shieldGold"> </span>
+                <button class="button" onclick="levelUp('Shield');"> Level Up </button>
+            </div>
+
+        </div class="mainDiv">
+
+        <div style="height:30%; font-size: 5vh; color: white; text-align:center;">
+            -- Current Quest Level-- <br/> <span id="CurrentQuestLevel"> </span> </br>
+            <button class="button" onclick="play()"> Quest </button> </br>
+            <button class="button" onclick="resetGame()"> Reset Game </button>
+        </div>
+
+    </div>
+
+    <div class="menu" id="battleMenu">
+
+        <div class="battleDiv" style="width: 100%;">
+            <img style="position: relative; top: 50%; width: 30%; height: 50%; left: 10%;" src="images/Minion.png" />
+            <img style="float:right; position: relative; top: 25%; width: 30%; height: 70%; right: 10%;" src="images/Brandon.jpg" />
+        </div>
+
+        <div class="GameStats">
+            <div class="floatLeft" id="monsterStats">
+                <br/>
+                <span class="pointer">HP: </span> &nbsp <progress max=100 value=100 id="monsterHealth"></progress> <br/> <br/>
+                <img width="240px" id="monsterImg" />
+            </div>
+
+            <div class="floatLeft" id="championStats">
+                <br/>
+                <span class="pointer">HP: </span> &nbsp <progress max=100 value=100 id="ChampionHealth"></progress> <br/> <br/>
+                <img onclick="attackMove();" width="230px" id="championImg" />
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
