@@ -8,16 +8,29 @@ body {
   font-size: 14px;
 }
 
+.quest-level {
+  height: 30%;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+}
+
+@media (min-width: 780px) {
+  .quest-level {
+    font-size: 3rem;
+  }
+}
+
 .pointer-title {
   background: url("images/wooden.jpg") !important;
-  font-size: 2rem !important;
+  font-size: 1.8rem !important;
   margin: 0% 1% 1%;
   text-align: center;
 }
 
 @media (min-width: 780px) {
   .pointer-title {
-    font-size: 3rem;
+    font-size: 3rem !important;
   }
 }
 
