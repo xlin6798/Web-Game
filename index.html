@@ -56,7 +56,7 @@
 
         </div class="mainDiv">
 
-        <div style="height:30%; font-size: 5vh; color: white; text-align:center;">
+        <div class="quest-level">
             -- Current Quest Level-- <br/> <span id="CurrentQuestLevel"> </span> </br>
             <button class="button" onclick="play()"> Quest </button> </br>
             <button class="button" onclick="resetGame()"> Reset Game </button>
@@ -75,13 +75,13 @@
             <div class="floatLeft" id="monsterStats">
                 <br/>
                 <span class="pointer">HP: </span> &nbsp <progress max=100 value=100 id="monsterHealth"></progress> <br/> <br/>
-                <img width="240px" id="monsterImg" />
+                <img class="gamestat-img" id="monsterImg" />
             </div>
 
             <div class="floatLeft" id="championStats">
                 <br/>
                 <span class="pointer">HP: </span> &nbsp <progress max=100 value=100 id="ChampionHealth"></progress> <br/> <br/>
-                <img onclick="attackMove();" width="230px" id="championImg" />
+                <img onclick="attackMove();" class="gamestat-img" id="championImg" />
             </div>
         </div>
     </div>

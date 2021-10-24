@@ -1,3 +1,5 @@
+var waves;
+
 function initialize() {
     battleMenu.style.display = "none";
     mainMenu.style.display = "none";
@@ -58,8 +60,8 @@ function selectChamp(champ, atk, def, hp) {
 }
 
 function gameMenu() {
-    battleMenu.style.display = "none";
     checkLevel();
+    battleMenu.style.display = "none";
     mainMenu.style.display = "block";
     selectPlayer.style.display = "none";
     Player_Champ.style = "background: url(images/" + cname + ".jpg); background-size:cover; background-repeat: no-repeat;";
@@ -68,7 +70,7 @@ function gameMenu() {
     playerStatsCalc();
     Player_Health.innerHTML = playerStatsCalc('hp');
     playerLevel.value = exp;
-    playerLevel.max = 50 * Math.pow(2, level - 1);
+    playerLevel.max = 90 + 90 * Math.pow(1.6, level - 1);
     Player_Level.innerHTML = "Lvl. " + level;
     Player_Attack.innerHTML = playerStatsCalc('atk') + parseInt(getInfo('Weapon', 'attack'));
     Player_Defense.innerHTML = playerStatsCalc('def') + parseInt(getInfo('Shield', 'armor'));
@@ -88,30 +90,30 @@ function gameMenu() {
 function playerStatsCalc(x) {
     if (cname == "Annie") {
         if (x == "hp") {
-            return health + level * 40;
+            return health + level * 100;
         }
         if (x == "atk") {
-            return attack + level * 5;
+            return attack + level * 11;
         }
         if (x == "def") {
-            return defense + level * 2;
+            return defense + level * 9;
         }
     } else {
         if (x == "hp") {
-            return health + level * 70;
+            return health + level * 130;
         }
         if (x == "atk") {
-            return attack + level * 2;
+            return attack + level * 7;
         }
         if (x == "def") {
-            return defense + level * 3;
+            return defense + level * 15;
         }
     }
 }
 
 function checkLevel() {
-    while (exp >= 90 * Math.pow(2, level - 1)) {
-        exp -= 90 * Math.pow(2, level - 1);
+    while (exp >= 90 + 90 * Math.pow(1.6, level - 1)) {
+        exp -= 90 + 90 * Math.pow(1.6, level - 1);
         level++;
         checkLevel();
     }
@@ -120,12 +122,12 @@ function checkLevel() {
 function getInfo(x, y) {
     if (y == "cost") {
         if (x == "Weapon") {
-            if (WeaponLvl == 6)
+            if (WeaponLvl == 7)
                 return "Max Level";
             else
                 return (eval(cname + x)[eval(x + "Lvl") + 1][y]);
         } else {
-            if (ShieldLvl == 6)
+            if (ShieldLvl == 7)
                 return "Max Level";
             else
                 return (eval(cname + x)[eval(x + "Lvl") + 1][y]);
@@ -136,12 +138,13 @@ function getInfo(x, y) {
 }
 
 function play() {
-    minionHp = 30 + Math.round((questLevel * 30 + 30) / (questLevel));
-    minionAtk = 3 + Math.round((questLevel * 8 + 3) / (questLevel));
-    minionDef = 0 + Math.round((questLevel * 9 + 0) / (questLevel));
-    bossHp = 50 + Math.round((questLevel * 150 + 50) / (questLevel));
-    bossAtk = 6 + Math.round((questLevel * 12 + 6) / (questLevel));
-    bossDef = 9 + Math.round((questLevel * 16 + 9) / (questLevel));
+    waves = 3 + Math.floor(questLevel/5);
+    minionHp = 10 + Math.round((questLevel * 50 * Math.pow(1.2, questLevel-1)) / (questLevel));
+    minionAtk = 3 + Math.round((questLevel * 10 * Math.pow(1.05, questLevel-1)) / (questLevel));
+    minionDef = 1 + Math.round((questLevel * 6 * Math.pow(1.05, questLevel-1)) / (questLevel));
+    bossHp = 50 + Math.round((questLevel * 120 * Math.pow(1.2, questLevel-1)) / (questLevel));
+    bossAtk = 5 + Math.round((questLevel * 25 * Math.pow(1.1, questLevel-1)) / (questLevel));
+    bossDef = 3 + Math.round((questLevel * 28* Math.pow(1.1, questLevel-1)) / (questLevel));
     champHealth = health;
     monsterHealth.max = minionHp;
     monsterHealth.value = minionHp;
@@ -158,10 +161,11 @@ function play() {
 }
 
 function newWave() {
-    if (wave == 3) {
+    if (wave == waves) {
         currentMonsterHp = bossHp;
         currentMonsterAtk = bossAtk;
         currentMonsterDef = bossDef;
+        console.log (bossHp + " " + bossAtk + " " + bossDef);
         if (questLevel <= 16)
             monsterImg.src = "images/boss" + questLevel + ".png";
         else
@@ -178,22 +182,26 @@ function newWave() {
 function attackMove() {
     currentMonsterHp = currentMonsterHp - attackMultipler(currentMonsterDef) * (playerStatsCalc('atk') + parseInt(getInfo('Weapon', 'attack')));
     monsterHealth.value = currentMonsterHp;
+    //console.log(attackMultipler(currentMonsterDef));
+    //console.log(currentMonsterHp);
     if (currentMonsterHp > 0) {
         champHealth = champHealth - attackMultipler(playerStatsCalc('def') + parseInt(getInfo('Shield', 'armor'))) * currentMonsterAtk;
+        //console.log(champHealth);
+        //console.log(" | " + attackMultipler(playerStatsCalc('def') + parseInt(getInfo('Shield', 'armor'))));
         ChampionHealth.value = champHealth;
         if (champHealth <= 0) {
             save();
             gameMenu();
         }
     } else {
-        if (wave < 3) {
-            gold += 21 + Math.round((questLevel * 10 + 10) / questLevel);
-            exp += 10 + Math.round((questLevel * 10 + 5) / questLevel);
+        if (wave < waves) {
+            gold += 15 + Math.round((questLevel * 10 * Math.pow(1.11, questLevel-1)) / questLevel);
+            exp += 10 + Math.round((questLevel * 25 * Math.pow(1.4, questLevel-1)) / questLevel);
             wave++;
             newWave();
         } else {
-            gold += 50 + Math.round((questLevel * 50 + 10) / questLevel);
-            exp += 30 + Math.round((questLevel * 50 + 10) / questLevel);
+            gold += 50 + Math.round((questLevel * 50 * Math.pow(1.15, questLevel-1)) / questLevel);
+            exp += 10 + Math.round((questLevel * 70 * Math.pow(1.4, questLevel-1)) / questLevel);
             questLevel++;
             save();
             gameMenu();
